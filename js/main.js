@@ -7,6 +7,7 @@ var valuesArr = [];
 
 $(':submit').on('click', function (e) {
   e.preventDefault();
+  valuesArr=[];
   var formValues = $('.form-input');
   for (var i = 0; i < formValues.length; i++) {
     valuesArr.push($($('.form-input')[i]).val());
@@ -15,9 +16,13 @@ $(':submit').on('click', function (e) {
 
   console.log(valuesArr);
   // return valuesArr;
-  var subTotal = totalCharges(valuesArr);
-
+  var subTotal = subTotalPrice(valuesArr);
   $('#subtotal').html(" $" +subTotal);
+
+  var tipTotal = tipPrice(valuesArr);
+  $('#tip').html(" $" +tipTotal);
+
+  $('#total').html(" $" + totalCharges(subTotal, tipTotal));
 
 });
 
@@ -33,18 +38,7 @@ $(':button').on('click', function (e) {
 
 });
 
-function totalCharges (valuesArr) {
 
-  var mealPrice = parseInt(valuesArr[0]);
-  var taxRate = (valuesArr[1]);
-  var tipPercetage = (valuesArr[2]);
-
-  var subTotal = mealPrice + (mealPrice*taxRate);
-  var tipTotal = mealPrice*tipPercetage;
-
-  return subTotal;
-
-}
 
 
 
