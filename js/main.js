@@ -3,11 +3,10 @@ $(document).on('ready', function() {
 
   var valuesArr = [];
   var tipArr = [];
-  $(':submit').on('click', function (e) {
+  $('form').on('submit', function (e) {
     e.preventDefault();
     valuesArr=[];
     var formValues = $('.form-input');
-    // TODO: add check for form - imput === ""
     for (var i = 0; i < formValues.length; i++) {
       valuesArr.push($($('.form-input')[i]).val());
       $($('.form-input')[i]).val("");
@@ -19,14 +18,19 @@ $(document).on('ready', function() {
     $('#total').html(" $" +(mealData.subTotal()+mealData.tip()) );
     $('#totalTips').html(" $" +mealData.addTips());
     $("#mealCount").html(" " + tipArr.length);
-    $("#averageTip").html(" $" + (mealData.addTips() / tipArr.length))
+    $("#averageTip").html(" $" +(mealData.addTips() / tipArr.length))
   });
 
-  $(':button').on('click', function (e) {
+// this button clears the form values before submit
+  $('[value="Clear"]').on('click', function (e) {
     e.preventDefault();
     var formValues = $('.form-input');
     for (var i = 0; i < formValues.length; i++) {
       $($('.form-input')[i]).val("");
     }
   });
+// this button clears the totals
+  $('[value="Reset"]').on("click", function(){
+    $("span").not(".small").html("");
+  })
 });
