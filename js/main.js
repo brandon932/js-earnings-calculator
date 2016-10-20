@@ -11,14 +11,14 @@ $(document).on('ready', function() {
       valuesArr.push($($('.form-input')[i]).val());
       $($('.form-input')[i]).val("");
     }
-    var mealData= new Calculate(valuesArr, tipArr)
+    var mealData= new Calculate(valuesArr, tipArr);
     tipArr.push(mealData.tip());
     $('#subtotal').html(" $" + mealData.subTotal());
     $('#tip').html(" $" +mealData.tip());
     $('#total').html(" $" +(mealData.subTotal()+mealData.tip()) );
     $('#totalTips').html(" $" +mealData.addTips());
     $("#mealCount").html(" " + tipArr.length);
-    $("#averageTip").html(" $" +(mealData.addTips() / tipArr.length))
+    $("#averageTip").html(" $" +(mealData.addTips() / tipArr.length));
   });
 
 // this button clears the form values before submit
@@ -32,5 +32,5 @@ $(document).on('ready', function() {
 // this button clears the totals
   $('[value="Reset"]').on("click", function(){
     $("span").not(".small").html("");
-  })
+  });
 });
